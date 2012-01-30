@@ -1,0 +1,7 @@
+sdesc: "Extremely small Unix-based HTTP server"
+ldesc: "Program runs from inetd. All in 150 lines of code. This web server can
+also be used to serve HTTPS by wrapping it with stunnel. But for
+low-traffic sites, it's quite adequate. It implements all the basic
+features of an HTTP server."
+category: Web
+requires: cygwin

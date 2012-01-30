@@ -1,0 +1,65 @@
+From 643aaf403a36187f2fe3033163b4b9d8da491db9 Mon Sep 17 00:00:00 2001
+From: Jari Aalto <jari.aalto@cante.net>
+Date: Mon, 3 Mar 2008 09:28:01 +0200
+Subject: [PATCH] Makefile: rewrite install target
+
+Signed-off-by: Jari Aalto <jari.aalto@cante.net>
+---
+ Makefile |   33 ++++++++++++++++++++++++++++-----
+ 1 files changed, 28 insertions(+), 5 deletions(-)
+
+diff --git a/Makefile b/Makefile
+index 822ef5e..7a94f98 100644
+--- a/Makefile
++++ b/Makefile
+@@ -7,19 +7,42 @@ CFLAGS =	-O
+ LDFLAGS =	-s ${SYSVLIBS}
+ #LDFLAGS =	-g ${SYSVLIBS}
+ 
+-all:		micro_httpd
++DESTDIR         =
++prefix          = /usr
++exec_prefix     = $(prefix)
++man_prefix      = $(prefix)/share
+ 
+-micro_httpd:	micro_httpd.o
+-	${CC} ${CFLAGS} micro_httpd.o ${LDFLAGS} -o micro_httpd
++INSTALL         = /usr/bin/install
++INSTALL_BIN     = $(INSTALL) -m 755
++INSTALL_DATA    = $(INSTALL) -m 644
++INSTALL_OBJS    = micro-httpd.exe
++
++MANDIR          = $(DESTDIR)$(man_prefix)/man/man8
++BINDIR          = $(DESTDIR)$(exec_prefix)/bin
++
++all:		micro-httpd
++
++micro-httpd: micro_httpd.o
++	${CC} ${CFLAGS} micro_httpd.o ${LDFLAGS} -o micro-httpd
+ 
+ micro_httpd.o:	micro_httpd.c
+ 	${CC} ${CFLAGS} -c micro_httpd.c
+ 
+-install:	all
++install-old:	all
+ 	rm -f ${BINDIR}/micro_httpd
+ 	cp micro_httpd ${BINDIR}
+ 	rm -f ${MANDIR}/micro_httpd.8
+ 	cp micro_httpd.8 ${MANDIR}
+ 
++install-bin:
++	$(INSTALL_BIN) -d $(BINDIR)
++	$(INSTALL_BIN) -s $(INSTALL_OBJS) $(BINDIR)
++
++install-man:
++	$(INSTALL_BIN) -d $(MANDIR)
++	$(INSTALL_DATA) *.8 $(MANDIR)/micro-httpd.8
++
++install: all install-bin install-man
++
+ clean:
+-	rm -f micro_httpd *.o core core.* *.core
++	rm -f micro*httpd *.exe *.o core core.* *.core
+-- 
+1.5.3.8
+

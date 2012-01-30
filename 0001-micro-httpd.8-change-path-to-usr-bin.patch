@@ -1,0 +1,79 @@
+From 2cd1761e6c0e3e649bfabe029bb9c8dd55717163 Mon Sep 17 00:00:00 2001
+From: Jari Aalto <jari.aalto@cante.net>
+Date: Mon, 3 Mar 2008 10:30:53 +0200
+Subject: [PATCH] micro-httpd.8: change path to /usr/bin
+
+Signed-off-by: Jari Aalto <jari.aalto@cante.net>
+---
+ micro_httpd.8 |   31 +++++++++++++++++--------------
+ 1 files changed, 17 insertions(+), 14 deletions(-)
+
+diff --git a/micro_httpd.8 b/micro_httpd.8
+index fbf1bd9..3d137e3 100644
+--- a/micro_httpd.8
++++ b/micro_httpd.8
+@@ -1,12 +1,12 @@
+-.TH micro_httpd 8 "15 March 1999"
++.TH micro-httpd 8 "15 March 1999"
+ .SH NAME
+-micro_httpd - really small HTTP server
++micro-httpd - really small HTTP server
+ .SH SYNOPSIS
+-.B micro_httpd
++.B micro-httpd
+ .I directory
+ .SH DESCRIPTION
+ .PP
+-.I micro_httpd
++.I micro-httpd
+ is a very small HTTP server.
+ It runs from inetd, which means its performance is poor.
+ But for low-traffic sites, it's quite adequate.
+@@ -31,14 +31,18 @@ All in 150 lines of code.
+ .PP
+ To install it, add a line like this to /etc/inetd.conf:
+ .nf
+-    micro_http  stream tcp nowait nobody  /usr/local/sbin/micro_httpd micro_httpd dir
++.PP
++    micro-httpd  stream tcp nowait nobody  /usr/sbin/micro-httpd micro-httpd dir
+ .fi
++.PP
+ Make sure the path to the executable is correct, and change "dir" to be
+ the directory you want to serve.
+ Then add a line like this to /etc/services:
+ .nf
+-    micro_http   port/tcp   #Micro HTTP server
++.PP
++    micro-httpd   port/tcp   #Micro HTTP server
+ .fi
++.PP
+ Change "port" to the port number you want to use - 80, 8000, whatever.
+ Then restart inetd by sending it a "HUP" signal, or rebooting.
+ .PP
+@@ -53,16 +57,15 @@ On FreeBSD, you add a "-R 10000" flag to inetd's initial command line.
+ On some Linux systems, you can set the limit on a per-service basis
+ in inetd.conf, by changing "nowait" to "nowait.10000".
+ .PP
+-Note that you can use micro_httpd to serve HTTPS, if you like, by running
+-it from stunnel.
+-First fetch and install stunnel - FreeBSD users can just go to
+-/usr/ports/security/stunnel and do a "make cert ; make install".
+-Then as root run:
++Note that you can use micro-httpd to serve HTTPS, if you like, by running
++it from stunnel. Then as root run:
+ .nf
+-    stunnel -p /usr/local/certs/stunnel.pem -d 443 \
+-	-l /usr/local/sbin/micro_httpd -- \
+-	micro_httpd dir
++.PP
++    stunnel -p /path/to/stunnel.pem -d 443 \\
++	-l /usr/bin/micro-httpd -- \\
++	micro-httpd dir
+ .fi
++.PP
+ Make sure the paths to the certificate and executable are correct, and
+ again don't forget to change "dir" to the directory you want to serve.
+ .SH AUTHOR
+-- 
+1.5.3.8
+

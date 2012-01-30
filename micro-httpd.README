@@ -1,0 +1,73 @@
+micro-httpd
+------------------------------------------
+
+Extremely small Unix-based HTTP server
+
+Program runs from inetd. All in 150 lines of code. This web server can
+also be used to serve HTTPS by wrapping it with stunnel. But for
+low-traffic sites, it's quite adequate. It implements all the basic
+features of an HTTP server.
+
+Features:
+
+  * Security against ".." filename snooping.
+  * The common MIME types.
+  * Trailing-slash redirection.
+  * index.html
+  * Directory listings.
+
+Runtime requirements:
+  cygwin
+
+Build requirements:
+  cygwin
+
+Canonical homepage:
+  http://packages.debian.org/micro-httpd
+
+Canonical download:
+  See above
+
+Version control repository:
+
+Mailing list:
+
+Forum / Wiki:
+
+IRC channel:
+
+Upstream contact:
+  Maintainer: Jef Poskanzer <jef@acme.com>
+  Bugs: Jef Poskanzer <jef@acme.com>
+
+License:
+  GPL
+
+Language:
+  C
+
+------------------------------------
+
+Build instructions:
+  unpack micro-httpd-*-src.tar.bz2
+    if you use setup to install this src package, it will be
+    unpacked under /usr/src automatically
+  cd /usr/src
+  ./micro-httpd*.sh all
+
+-------------------------------------------
+
+Files included in the binary distro:
+  See content of *.tar.gz
+
+------------------
+
+Port Notes:
+- Makefile: rewrote target install
+- Change name from micro_httpd to micro-httpd
+
+----- version 20011214-1 -----
+- Initial release 2008-03-02
+
+Cygwin port maintained by: Jari Aalto <jari.aalto@cante.net>
+Copyright (C) 2008 Jari Aalto; Licensed under GPL v2 or later
