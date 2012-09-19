@@ -58,7 +58,7 @@ Build instructions:
 -------------------------------------------
 
 Files included in the binary distro:
-  See content of *.tar.gz
+  See Cygwin package archive
 
 ------------------
 
@@ -66,8 +66,11 @@ Port Notes:
 - Makefile: rewrote target install
 - Change name from micro_httpd to micro-httpd
 
+----- version 20051212-1 -----
+- New upstream release 2012-09-19 Jari Aalto
+
 ----- version 20011214-1 -----
 - Initial release 2008-03-02
 
 Cygwin port maintained by: Jari Aalto <jari.aalto@cante.net>
-Copyright (C) 2008 Jari Aalto; Licensed under GPL v2 or later
+Copyright (C) 2008-2012 Jari Aalto; Licensed under GPL v2 or later
